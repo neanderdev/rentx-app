@@ -14,6 +14,7 @@ import {
     Price,
     Accessories,
     About,
+    Footer,
 } from './styles';
 
 import speedSvg from "../../assets/speed.svg";
@@ -26,6 +27,7 @@ import peopleSvg from "../../assets/people.svg";
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Accessory } from '../../components/Accessory';
+import { Button } from '../../components/Button';
 
 export function CarDetail() {
     return (
@@ -69,6 +71,10 @@ export function CarDetail() {
                     na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
                 </About>
             </Content>
+
+            <Footer>
+                <Button title='Confirmar' />
+            </Footer>
         </Container>
     );
 }
