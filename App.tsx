@@ -16,7 +16,7 @@ import {
 } from '@expo-google-fonts/archivo';
 import { ThemeProvider } from 'styled-components';
 
-import { CarDetail } from './src/screens/CarDetail';
+import { Scheduling } from './src/screens/Scheduling';
 
 import theme from './src/styles/theme';
 
@@ -64,7 +64,7 @@ export default function App() {
             flex: 1
           }}
         >
-          <CarDetail />
+          <Scheduling />
         </View>
       </ThemeProvider>
     </GestureHandlerRootView>
