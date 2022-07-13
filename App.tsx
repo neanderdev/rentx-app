@@ -1,4 +1,7 @@
+import "react-native-gesture-handler";
+
 import React, { useCallback, useEffect, useState } from 'react';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { View } from 'react-native';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -13,7 +16,7 @@ import {
 } from '@expo-google-fonts/archivo';
 import { ThemeProvider } from 'styled-components';
 
-import { Home } from './src/screens/Home';
+import { CarDetail } from './src/screens/CarDetail';
 
 import theme from './src/styles/theme';
 
@@ -53,15 +56,17 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <View
-        onLayout={onLayoutRootView}
-        style={{
-          flex: 1
-        }}
-      >
-        <Home />
-      </View>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <View
+          onLayout={onLayoutRootView}
+          style={{
+            flex: 1
+          }}
+        >
+          <CarDetail />
+        </View>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }

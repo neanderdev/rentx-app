@@ -11,6 +11,7 @@ import {
     HeaderContent,
     Header,
     TotalCars,
+    CarList,
 } from './styles';
 
 export function Home() {
@@ -45,9 +46,11 @@ export function Home() {
                 </HeaderContent>
             </Header>
 
-            <Car data={carData} />
-
-            <Car data={carData} />
+            <CarList
+                data={[1, 2, 3, 4, 5, 6]}
+                keyExtractor={item => String(item)}
+                renderItem={({ item }) => <Car data={carData} />}
+            />
         </Container>
     );
 }
