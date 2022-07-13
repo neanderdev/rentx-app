@@ -12,5 +12,11 @@ export const Header = styled.View`
   justify-content: space-between;
   align-items: center;
 
+  position: absolute;
   margin-top: ${getStatusBarHeight() + 18}px;
+  margin-left: 24px;
+`;
+
+export const CarImage = styled.View`
+  margin-top: ${getStatusBarHeight() + 32}px;
 `;
