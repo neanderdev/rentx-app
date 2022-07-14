@@ -2,6 +2,7 @@ import React from 'react';
 import { useTheme } from 'styled-components';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from "@expo/vector-icons";
+import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 
 import {
     Container,
@@ -43,6 +44,11 @@ import { Button } from '../../components/Button';
 
 export function SchedulingDetails() {
     const theme = useTheme();
+    const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+    function handleSchedulingComplete() {
+        navigation.navigate('SchedulingComplete');
+    }
 
     return (
         <Container>
@@ -120,7 +126,11 @@ export function SchedulingDetails() {
             </Content>
 
             <Footer>
-                <Button title='Confirmar' />
+                <Button
+                    title='Alugar agora'
+                    color={theme.colors.success}
+                    onPress={handleSchedulingComplete}
+                />
             </Footer>
         </Container>
     );

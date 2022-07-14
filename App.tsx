@@ -16,7 +16,7 @@ import {
 } from '@expo-google-fonts/archivo';
 import { ThemeProvider } from 'styled-components';
 
-import { SchedulingComplete } from './src/screens/SchedulingComplete';
+import { Routes } from "./src/routes";
 
 import theme from './src/styles/theme';
 
@@ -64,7 +64,7 @@ export default function App() {
             flex: 1
           }}
         >
-          <SchedulingComplete />
+          <Routes />
         </View>
       </ThemeProvider>
     </GestureHandlerRootView>
