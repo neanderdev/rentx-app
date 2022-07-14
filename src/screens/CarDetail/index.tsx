@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import { NavigationProp, ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
 
 import {
     Container,
@@ -25,57 +25,69 @@ import gasolineSvg from "../../assets/gasoline.svg";
 import exchangeSvg from "../../assets/exchange.svg";
 import peopleSvg from "../../assets/people.svg";
 
+import { CarDTO } from '../../dtos/CarDTO';
+
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Accessory } from '../../components/Accessory';
 import { Button } from '../../components/Button';
 
+interface Params {
+    car: CarDTO;
+}
+
 export function CarDetail() {
     const navigation = useNavigation<NavigationProp<ParamListBase>>();
+    const route = useRoute();
+    const { car } = route.params as Params;
 
     function handleConfirmRental() {
         navigation.navigate('Scheduling');
     }
 
+    function handleBack() {
+        navigation.goBack();
+    }
+
     return (
         <Container>
             <Header>
-                <BackButton onPress={() => { }} />
+                <BackButton onPress={handleBack} />
             </Header>
 
             <CarImage>
                 <ImageSlider
-                    imagesUrl={["https://purepng.com/public/uploads/large/purepng.com-audi-r8audicars-961524670148fabn4.png"]}
+                    imagesUrl={car.photos}
                 />
             </CarImage>
 
             <Content>
                 <Details>
                     <Description>
-                        <Brand>Audi</Brand>
+                        <Brand>{car.brand}</Brand>
 
-                        <Name>R8</Name>
+                        <Name>{car.name}</Name>
                     </Description>
 
                     <Rent>
-                        <Period>Ao dia</Period>
+                        <Period>{car.rent.period}</Period>
 
-                        <Price>R$ 120</Price>
+                        <Price>{`R$  ${car.rent.price}`}</Price>
                     </Rent>
                 </Details>
 
                 <Accessories>
-                    <Accessory name="380km/h" icon={speedSvg} />
-                    <Accessory name="3.2s" icon={accelerationSvg} />
-                    <Accessory name="800 HP" icon={forceSvg} />
-                    <Accessory name="Gasolina" icon={gasolineSvg} />
-                    <Accessory name="Auto" icon={exchangeSvg} />
-                    <Accessory name="5 pessoas" icon={peopleSvg} />
+                    {car.accessories.map(accessory => (
+                        <Accessory
+                            key={accessory.type}
+                            name={accessory.name}
+                            icon={speedSvg}
+                        />
+                    ))}
                 </Accessories>
 
                 <About>
-                    Este é automóvel desportivo. Surgiu do lendário touro de lide indultado
-                    na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
+                    {car.about}
                 </About>
             </Content>
 
