@@ -2,7 +2,7 @@ import React from 'react';
 import { useTheme } from 'styled-components';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from "@expo/vector-icons";
-import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import { NavigationProp, ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
 
 import {
     Container,
@@ -37,14 +37,25 @@ import gasolineSvg from "../../assets/gasoline.svg";
 import exchangeSvg from "../../assets/exchange.svg";
 import peopleSvg from "../../assets/people.svg";
 
+import { CarDTO } from '../../dtos/CarDTO';
+
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Accessory } from '../../components/Accessory';
 import { Button } from '../../components/Button';
+import { MarkedDateProps } from '../../components/Calendar';
+
+interface Params {
+    car: CarDTO;
+    dates: MarkedDateProps;
+}
 
 export function SchedulingDetails() {
     const theme = useTheme();
     const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+    const route = useRoute();
+    const { car, dates } = route.params as Params;
 
     function handleSchedulingComplete() {
         navigation.navigate('SchedulingComplete');
