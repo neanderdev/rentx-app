@@ -26,7 +26,7 @@ import { api } from '../../services/api';
 
 import { BackButton } from '../../components/BackButton';
 import { Car } from '../../components/Car';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 interface CarProps {
     id: string;
@@ -89,7 +89,7 @@ export function MyCars() {
 
             {loading
                 ? (
-                    <Load />
+                    <LoadAnimation />
                 )
                 : (
                     <Content>
