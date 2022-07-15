@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 
 import React, { useCallback, useEffect, useState } from 'react';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { View } from 'react-native';
+import { LogBox, View } from 'react-native';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {
@@ -19,6 +19,10 @@ import { ThemeProvider } from 'styled-components';
 import { Routes } from "./src/routes";
 
 import theme from './src/styles/theme';
+
+LogBox.ignoreLogs([
+  'ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from \'deprecated-react-native-prop-types\'.'
+])
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
