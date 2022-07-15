@@ -18,7 +18,7 @@ import {
 
 import ArrowSvg from "../../assets/arrow.svg";
 
-import { getPlataformDate } from '../../utils/getPlataformDate';
+import { getPlatformDate } from '../../utils/getPlatformDate';
 
 import { CarDTO } from '../../dtos/CarDTO';
 
@@ -76,18 +76,16 @@ export function Scheduling() {
         }
 
         setLastSelectedDate(end);
-
         const interval = generateInterval(start, end);
-
         setMarkedDates(interval);
 
         const firstDate = Object.keys(interval)[0];
         const endDate = Object.keys(interval)[Object.keys(interval).length - 1];
 
         setRentalPeriod({
-            startFormatted: format(getPlataformDate(new Date(firstDate)), 'dd/MM/yyyy'),
-            endFormatted: format(getPlataformDate(new Date(endDate)), 'dd/MM/yyyy'),
-        });
+            startFormatted: format(getPlatformDate(new Date(firstDate)), 'dd/MM/yyyy'),
+            endFormatted: format(getPlatformDate(new Date(endDate)), 'dd/MM/yyyy'),
+        })
     }
 
     return (
