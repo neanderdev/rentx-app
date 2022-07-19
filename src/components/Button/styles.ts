@@ -8,6 +8,10 @@ interface ContainerProps {
   children: ReactNode;
 }
 
+interface TitleProps {
+  light?: boolean;
+}
+
 export const Container = styled(RectButton)<ContainerProps>`
   width: 100%;
 
@@ -20,8 +24,9 @@ export const Container = styled(RectButton)<ContainerProps>`
     color ? color : theme.colors.main};
 `;
 
-export const Title = styled.Text`
+export const Title = styled.Text<TitleProps>`
   font-family: ${({ theme }) => theme.fonts.primary_500};
   font-size: ${RFValue(15)}px;
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme, light }) =>
+    light ? theme.colors.header : theme.colors.shape};
 `;
