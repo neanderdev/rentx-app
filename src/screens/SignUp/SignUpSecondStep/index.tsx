@@ -5,10 +5,11 @@ import {
     Keyboard,
 } from 'react-native';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import { useTheme } from 'styled-components';
 
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
-import { Input } from '../../../components/Input';
+import { PasswordInput } from '../../../components/PasswordInput';
 import { Button } from '../../../components/Button';
 
 import {
@@ -21,15 +22,13 @@ import {
     FormTitle,
 } from './styles';
 
-export function SignUpFirstStep() {
+export function SignUpSecondStep() {
     const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+    const theme = useTheme();
 
     function handleBack() {
         navigation.goBack();
-    }
-
-    function handleNextStep() {
-        navigation.navigate('SignUpSecondStep');
     }
 
     return (
@@ -45,8 +44,8 @@ export function SignUpFirstStep() {
                         />
 
                         <Steps>
-                            <Bullet active />
                             <Bullet />
+                            <Bullet active />
                         </Steps>
                     </Header>
 
@@ -62,30 +61,23 @@ export function SignUpFirstStep() {
 
                     <Form>
                         <FormTitle>
-                            1. Dados
+                            2. Senha
                         </FormTitle>
 
-                        <Input
-                            iconName='user'
-                            placeholder='Nome'
+                        <PasswordInput
+                            iconName='lock'
+                            placeholder='Senha'
                         />
 
-                        <Input
-                            iconName='mail'
-                            placeholder='E-mail'
-                            keyboardType='email-address'
-                        />
-
-                        <Input
-                            iconName='credit-card'
-                            placeholder='CNH'
-                            keyboardType='numeric'
+                        <PasswordInput
+                            iconName='lock'
+                            placeholder='Repetir senha'
                         />
                     </Form>
 
                     <Button
-                        title='Próximo'
-                        onPress={handleNextStep}
+                        title='Cadastrar'
+                        color={theme.colors.success}
                     />
                 </Container>
             </TouchableWithoutFeedback>
