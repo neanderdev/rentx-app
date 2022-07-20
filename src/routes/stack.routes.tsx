@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { SignIn } from "../screens/SignIn";
+import { SignUpFirstStep } from "../screens/SignUp/SignUpFirstStep";
 import { Home } from "../screens/Home";
 import { CarDetail } from "../screens/CarDetail";
 import { Scheduling } from "../screens/Scheduling";
@@ -20,6 +21,11 @@ export function StackRoutes() {
             <Screen
                 name="SignIn"
                 component={SignIn}
+            />
+
+            <Screen
+                name="SignUpFirstStep"
+                component={SignUpFirstStep}
             />
 
             <Screen
