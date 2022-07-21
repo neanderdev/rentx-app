@@ -8,6 +8,8 @@ import {
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 import * as Yup from "yup";
 
+import { useAuth } from '../../../hooks/auth';
+
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
 import { Input } from '../../../components/Input';
@@ -29,6 +31,9 @@ export function SignUpFirstStep() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [driverLicense, setDriverLicense] = useState('');
+
+    const { user } = useAuth();
+    console.log(user);
 
     function handleBack() {
         navigation.goBack();

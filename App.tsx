@@ -16,6 +16,8 @@ import {
 } from '@expo-google-fonts/archivo';
 import { ThemeProvider } from 'styled-components';
 
+import { AppProvider } from "./src/hooks";
+
 import { Routes } from "./src/routes";
 
 import theme from './src/styles/theme';
@@ -68,7 +70,9 @@ export default function App() {
             flex: 1
           }}
         >
-          <Routes />
+          <AppProvider>
+            <Routes />
+          </AppProvider>
         </View>
       </ThemeProvider>
     </GestureHandlerRootView>

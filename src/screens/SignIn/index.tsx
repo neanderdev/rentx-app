@@ -10,6 +10,8 @@ import { useTheme } from 'styled-components';
 import * as Yup from "yup";
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 
+import { useAuth } from '../../hooks/auth';
+
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
@@ -25,6 +27,8 @@ import {
 
 export function SignIn() {
     const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+    const { signIn } = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -43,7 +47,8 @@ export function SignIn() {
 
             Alert.alert('Tudo certo');
 
-            // Fazer login.
+            // Fazer login
+            await signIn({ email, password });
         } catch (error) {
             if (error instanceof Yup.ValidationError) {
                 return Alert.alert('Error', error.message);
