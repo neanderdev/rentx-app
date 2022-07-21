@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     StatusBar,
     KeyboardAvoidingView,
@@ -11,8 +11,6 @@ import * as Yup from "yup";
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 
 import { useAuth } from '../../hooks/auth';
-
-import { database } from "../../database";
 
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
@@ -64,19 +62,6 @@ export function SignIn() {
     function handleNewAccount() {
         navigation.navigate('SignUpFirstStep');
     }
-
-    useEffect(() => {
-        async function loadData() {
-            const userCollection = database.get('users');
-
-            const users = await userCollection.query().fetch();
-
-            console.log('Usuários cadastrados no banco de dados');
-            console.log(users);
-        }
-
-        loadData();
-    }, []);
 
     return (
         <KeyboardAvoidingView
