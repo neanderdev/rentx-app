@@ -99,7 +99,7 @@ export function CarDetail() {
                     { backgroundColor: theme.colors.background_secondary }
                 ]}
             >
-                <Header>
+                <Header style={{ zIndex: 10 }}>
                     <BackButton onPress={handleBack} />
                 </Header>
 
