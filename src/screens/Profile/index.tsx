@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 import { Feather } from "@expo/vector-icons";
@@ -10,15 +10,21 @@ import {
   Header,
   HeaderTop,
   HeaderTitle,
-  LogutButton,
+  LogoutButton,
   PhotoContainer,
   Photo,
   PhotoButton,
+  Content,
+  Options,
+  Option,
+  OptionTitle,
 } from './styles';
 
 export function Profile() {
   const theme = useTheme();
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+  const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
 
   function handleBack() {
     navigation.goBack();
@@ -26,6 +32,10 @@ export function Profile() {
 
   function handleSignOut() {
 
+  }
+
+  function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
+    setOption(optionSelected);
   }
 
   return (
@@ -41,9 +51,9 @@ export function Profile() {
             Editar Perfil
           </HeaderTitle>
 
-          <LogutButton onPress={handleSignOut}>
+          <LogoutButton onPress={handleSignOut}>
             <Feather name="power" size={24} color={theme.colors.shape} />
-          </LogutButton>
+          </LogoutButton>
         </HeaderTop>
 
         <PhotoContainer>
@@ -54,6 +64,28 @@ export function Profile() {
           </PhotoButton>
         </PhotoContainer>
       </Header>
+
+      <Content>
+        <Options>
+          <Option
+            active={option === "dataEdit"}
+            onPress={() => handleOptionChange("dataEdit")}
+          >
+            <OptionTitle active={option === "dataEdit"}>
+              Dados
+            </OptionTitle>
+          </Option>
+
+          <Option
+            active={option === "passwordEdit"}
+            onPress={() => handleOptionChange("passwordEdit")}
+          >
+            <OptionTitle active={option === "passwordEdit"}>
+              Trocar senha
+            </OptionTitle>
+          </Option>
+        </Options>
+      </Content>
     </Container>
   );
 }
