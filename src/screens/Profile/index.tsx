@@ -49,6 +49,24 @@ export function Profile() {
     navigation.goBack();
   }
 
+  async function handleSignOut() {
+    Alert.alert(
+      'Tem certeza?',
+      'Lembre-se, que se você sair, irá precisar de internet para conectar-se novamente',
+      [
+        {
+          text: 'Cancelar',
+          onPress: () => { },
+          style: 'cancel',
+        },
+        {
+          text: 'Sair',
+          onPress: () => signOut(),
+        }
+      ]
+    );
+  }
+
   function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
     setOption(optionSelected);
   }
@@ -116,7 +134,7 @@ export function Profile() {
                 Editar Perfil
               </HeaderTitle>
 
-              <LogoutButton onPress={signOut}>
+              <LogoutButton onPress={handleSignOut}>
                 <Feather name="power" size={24} color={theme.colors.shape} />
               </LogoutButton>
             </HeaderTop>
