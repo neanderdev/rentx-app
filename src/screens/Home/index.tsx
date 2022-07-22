@@ -130,6 +130,7 @@ export function Home() {
             offlineSynchronize();
         }
     }, [netInfo.isConnected]);
+
     return (
         <Container>
             <StatusBar
