@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, StatusBar } from 'react-native';
-import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import { NavigationProp, ParamListBase, useNavigation, useIsFocused } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { AntDesign } from "@expo/vector-icons";
 import { format, parseISO } from "date-fns";
@@ -39,6 +39,7 @@ interface CarProps {
 export function MyCars() {
     const theme = useTheme();
     const navigation = useNavigation<NavigationProp<ParamListBase>>();
+    const screenIsFocus = useIsFocused();
 
     const [cars, setCars] = useState<CarProps[]>([]);
     const [loading, setLoading] = useState(true);
@@ -70,7 +71,7 @@ export function MyCars() {
         }
 
         fetchCars();
-    }, []);
+    }, [screenIsFocus]);
 
     return (
         <Container>
